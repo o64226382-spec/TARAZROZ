@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترازنامه طلایی | ثناگلد</title>
+    <link href="assets/css/dynamic-theme.php" rel="stylesheet">
+    
+    <link href="fonts.css" rel="stylesheet">
+    <script src="xlsx.full.min.js"></script>
+    <script src="chart.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: rgba(255,255,255,0.02);
+            --border: rgba(212,175,55,0.12);
+            --gold: #d4af37;
+            --gold-light: #ffd700;
+            --text: #e0d5c0;
+            --text-secondary: #a09070;
+            --green: #4ade80;
+            --red: #f87171;
+            --radius: 14px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 14px;
+        }
+        
+        .container { max-width: 1300px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 14px;
+            backdrop-filter: blur(12px);
+        }
+        .header h1 {
+            font-size: 1.6rem; font-weight: 900;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .header .subtitle { color: var(--text-secondary); font-size: 0.75rem; margin-top: 4px; }
+        
+        .info-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 18px;
+            margin-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+        .info-item { text-align: center; }
+        .info-item .label { font-size: 0.68rem; color: var(--text-secondary); margin-bottom: 2px; }
+        .info-item .val { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+        
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            text-align: center;
+            background: var(--surface);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 14px;
+        }
+        .upload-zone:hover { border-color: var(--gold); background: rgba(212,175,55,0.04); }
+        .upload-zone .icon { font-size: 2.8rem; margin-bottom: 8px; }
+        .upload-zone p { color: var(--text-secondary); font-size: 0.82rem; }
+        
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .branch-bar { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+        .branch-btn {
+            padding: 7px 14px; border: 1px solid var(--border);
+            background: var(--surface); color: var(--text);
+            border-radius: 18px; cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif; font-size: 0.73rem;
+            transition: all 0.2s;
+        }
+        .branch-btn.active, .branch-btn:hover { background: var(--gold); color: #1a1a1a; font-weight: 700; }
+        
+        .btn-pdf, .btn-print-official {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #d4af37, #b8960f);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+        }
+        .btn-print-official { background: #1e293b; color: white; border: 1px solid #475569; }
+        .btn-pdf:hover, .btn-print-official:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,175,55,0.3); }
+        
+        .info-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px; margin-bottom: 14px;
+        }
+        .info-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 12px; text-align: center;
+        }
+        .info-card .label { font-size: 0.68rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .info-card .value { font-size: 1.05rem; font-weight: 800; }
+        .info-card .value.gold { color: var(--gold-light); }
+        .info-card .value.green { color: var(--green); }
+        .info-card .value.red { color: var(--red); }
+        
+        .balance-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;
+        }
+        @media (max-width: 768px) { .balance-grid { grid-template-columns: 1fr; } }
+        
+        .balance-col {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px;
+        }
+        .col-title {
+            text-align: center; font-size: 0.95rem; font-weight: 700;
+            color: var(--gold-light); margin-bottom: 12px;
+            padding-bottom: 8px; border-bottom: 1px solid var(--border);
+        }
+        
+        .tree-parent {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 9px 10px; background: rgba(212,175,55,0.04);
+            border-radius: 8px; cursor: pointer; font-weight: 600;
+            font-size: 0.76rem; transition: all 0.2s; margin: 2px 0;
+        }
+        .tree-parent:hover { background: rgba(212,175,55,0.08); }
+        .tree-parent .arrow { transition: transform 0.3s; display: inline-block; margin-left: 6px; }
+        .tree-parent.open .arrow { transform: rotate(90deg); }
+        
+        .tree-children {
+            margin-right: 14px; display: none;
+            border-right: 1px solid var(--border); padding-right: 10px;
+        }
+        .tree-children.open { display: block; }
+        
+        .tree-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 8px; font-size: 0.72rem;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+        .tree-item .item-name { color: var(--text-secondary); }
+        .tree-item .item-val { font-weight: 600; }
+        
+        .chart-container {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px;
+            max-width: 420px; margin: 0 auto 14px;
+        }
+        
+        .footer-note { text-align: center; color: var(--text-secondary); font-size: 0.65rem; opacity: 0.35; margin-top: 16px; }
+        input[type="file"] { display: none; }
+
+        /* ================ پرینت رسمی ================ */
+        .print-only { display: none; }
+
+        @media print {
+            body { background: white !important; padding: 0 !important; margin: 0 !important; }
+            .container > *:not(.print-only) { display: none !important; }
+            .print-only { 
+                display: block !important;
+                width: 100%;
+                padding: 1.5cm 1cm;
+                font-family: 'Vazirmatn', sans-serif;
+                color: black;
+                direction: rtl;
+            }
+            .print-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid black; padding-bottom: 15px; }
+            .print-header h1 { font-size: 18pt; margin: 0; font-weight: 900; }
+            .print-header p { font-size: 10pt; color: #333; margin: 5px 0; }
+            .print-info { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 9pt; }
+            .balance-table { width: 100%; border-collapse: collapse; }
+            .balance-table th { background-color: #f0f0f0; font-weight: bold; border: 1px solid black; padding: 6px; font-size: 10pt; text-align: center; }
+            .balance-table td { border: 1px solid black; padding: 5px; font-size: 9pt; vertical-align: top; }
+            .balance-table .main-total { font-weight: bold; background-color: #e0e0e0; }
+            .balance-table .section-title { font-weight: bold; background-color: #f8f8f8; }
+            .print-footer { text-align: center; margin-top: 20px; font-size: 7pt; color: #666; border-top: 1px solid #ccc; padding-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>🏪 ترازنامه طلایی</h1>
+        <p class="subtitle">پلتفرم تراز</p>
+    </div>
+    
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+        <div class="icon">📁</div>
+        <p>فایل Excel را اینجا کلیک کنید یا بکشید و رها کنید</p>
+    </div>
+    <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFile(this.files[0])">
+    
+    <div id="dashboard" style="display:none;">
+        
+        <div class="info-bar" id="infoBar"></div>
+        
+        <div class="action-bar">
+            <div class="branch-bar" id="branchBar"></div>
+            <button class="btn-pdf" onclick="window.print()">📄 خروجی PDF</button>
+            <button class="btn-print-official" onclick="printOfficial()">🧾 ترازنامه رسمی</button>
+        </div>
+        
+        <div class="info-cards" id="infoCards"></div>
+        <div class="balance-grid" id="balanceGrid"></div>
+        <div class="chart-container"><canvas id="mainChart" height="200"></canvas></div>
+        <div class="footer-note">تولید شده توسط سامانه ترازنامه طلایی</div>
+    </div>
+
+    <!-- ========== ساختار مخفی ترازنامه رسمی ========== -->
+    <div class="print-only" id="printArea"></div>
+    
+</div>
+
+<script>
+let allData = [];
+let currentBranch = null;
+let mainChart = null;
+
+// ========== خواندن فایل ==========
+function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const wb = XLSX.read(e.target.result, { type: 'array' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        processData(json);
+        document.getElementById('uploadZone').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.borderColor = '#ffd700'; });
+uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = '');
+uploadZone.addEventListener('drop', e => {
+    e.preventDefault(); uploadZone.style.borderColor = '';
+    handleFile(e.dataTransfer.files[0]);
+});
+
+// ========== پردازش ==========
+function processData(raw) {
+    const headers = raw[0];
+    allData = [];
+    
+    for (let i = 1; i < raw.length; i++) {
+        const row = raw[i];
+        if (!row || !row[0] || String(row[0]).trim() === '' || String(row[0]).trim() === 'شعبه') continue;
+        
+        const branch = String(row[0]).trim();
+        const month = String(row[1] || '').trim();
+        const rate = parseFloat(row[2]) || 0;
+        const entry = { branch, month, rate, items: [] };
+        
+        for (let j = 3; j < headers.length; j++) {
+            const path = String(headers[j] || '').trim();
+            const value = parseFloat(row[j]);
+            if (path && !isNaN(value)) {
+                entry.items.push({ path, value });
+            }
+        }
+        allData.push(entry);
+    }
+    renderBranchButtons();
+}
+
+// ========== دکمه‌های شعبه ==========
+function renderBranchButtons() {
+    const bar = document.getElementById('branchBar');
+    const branches = [...new Set(allData.map(d => d.branch))];
+    bar.innerHTML = '';
+    
+    const allBtn = document.createElement('button');
+    allBtn.className = 'branch-btn active';
+    allBtn.textContent = '🏢 همه شعب';
+    allBtn.onclick = () => { 
+        currentBranch = null;
+        bar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        allBtn.classList.add('active');
+        renderAll();
+    };
+    bar.appendChild(allBtn);
+    
+    branches.forEach(branch => {
+        const btn = document.createElement('button');
+        btn.className = 'branch-btn';
+        btn.textContent = branch;
+        btn.onclick = () => { 
+            currentBranch = branch;
+            bar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderAll();
+        };
+        bar.appendChild(btn);
+    });
+    renderAll();
+}
+
+// ========== ساخت درخت (نسخه اصلاح‌شده برای جمع زدن همه شعب) ==========
+function buildTree(items, aggregate = false) {
+    const tree = {};
+    items.forEach(item => {
+        const parts = item.path.split('/');
+        let current = tree;
+        parts.forEach((part, index) => {
+            part = part.trim();
+            if (!part) return;
+            if (!current[part]) { current[part] = { _children: {}, _value: null }; }
+            if (index === parts.length - 1) {
+                if (aggregate && current[part]._value !== null) {
+                    current[part]._value += item.value;
+                } else {
+                    current[part]._value = item.value;
+                }
+            }
+            current = current[part]._children;
+        });
+    });
+    return tree;
+}
+
+// ========== رندر اصلی ==========
+function renderAll() {
+    const filtered = currentBranch ? allData.filter(d => d.branch === currentBranch) : allData;
+    const aggregate = currentBranch === null; // برای همه شعب جمع زده شود
+    
+    const months = [...new Set(filtered.map(d => d.month))].filter(m => m);
+    const rate = filtered.length > 0 ? filtered[0].rate : 0;
+    document.getElementById('infoBar').innerHTML = `
+        <div class="info-item"><div class="label">📅 ماه</div><div class="val">${months.join('، ') || '—'}</div></div>
+        <div class="info-item"><div class="label">💹 نرخ آخر ماه (هر گرم طلا)</div><div class="val">${fmtNum(rate)} ریال</div></div>
+    `;
+    
+    const allItems = [];
+    filtered.forEach(d => allItems.push(...d.items));
+    const tree = buildTree(allItems, aggregate);
+    const assetTree = tree['دارایی'] || { _children: {} };
+    const bsTree = tree['بدهی ها و سرمایه'] || { _children: {} };
+    
+    const totalAsset = assetTree._value || sumLeaves(assetTree);
+    const totalBS = bsTree._value || sumLeaves(bsTree);
+    
+    document.getElementById('infoCards').innerHTML = `
+        <div class="info-card"><div class="label">💰 کل دارایی‌ها</div><div class="value gold">${fmt(totalAsset)}</div></div>
+        <div class="info-card"><div class="label">📋 کل بدهی و سرمایه</div><div class="value gold">${fmt(totalBS)}</div></div>
+        <div class="info-card"><div class="label">⚖️ تراز</div><div class="value ${Math.abs(totalAsset - totalBS) < 0.01 ? 'green' : 'red'}">${Math.abs(totalAsset - totalBS) < 0.01 ? '✅ متعادل' : '⚠️ ' + fmt(totalAsset - totalBS)}</div></div>
+    `;
+    
+    const grid = document.getElementById('balanceGrid');
+    
+    let assetHtml = '<div class="balance-col"><div class="col-title">💰 دارایی‌ها</div>';
+    assetHtml += renderTree(assetTree._children, 0);
+    assetHtml += `<div style="padding:10px;margin-top:8px;background:rgba(212,175,55,0.06);border-radius:8px;font-weight:700;text-align:center;color:var(--gold-light);">جمع: ${fmt(totalAsset)}</div>`;
+    assetHtml += '</div>';
+    
+    let bsHtml = '<div class="balance-col"><div class="col-title">📋 بدهی‌ها و سرمایه</div>';
+    bsHtml += renderTree(bsTree._children, 0);
+    bsHtml += `<div style="padding:10px;margin-top:8px;background:rgba(212,175,55,0.06);border-radius:8px;font-weight:700;text-align:center;color:var(--gold-light);">جمع: ${fmt(totalBS)}</div>`;
+    bsHtml += '</div>';
+    
+    grid.innerHTML = assetHtml + bsHtml;
+    updateChart(totalAsset, totalBS);
+}
+
+function renderTree(children, level) {
+    let html = '';
+    const indent = level * 10;
+    Object.entries(children).forEach(([name, node]) => {
+        const hasChildren = Object.keys(node._children).length > 0;
+        const isLeaf = node._value !== null && node._value !== undefined;
+        if (hasChildren) {
+            const id = 't_' + Math.random().toString(36).substr(2, 7);
+            html += `<div style="margin-right:${indent}px;">`;
+            html += `<div class="tree-parent" onclick="toggleTree('${id}', this)">`;
+            html += `<span><span class="arrow" id="ar_${id}">▶</span> ${name}</span>`;
+            if (node._value) html += `<span style="font-weight:600;">${fmt(node._value)}</span>`;
+            html += `</div><div class="tree-children" id="${id}">`;
+            html += renderTree(node._children, level + 1);
+            html += `</div></div>`;
+        } else if (isLeaf) {
+            html += `<div class="tree-item" style="margin-right:${indent}px;">`;
+            html += `<span class="item-name">📄 ${name}</span><span class="item-val">${fmt(node._value)}</span>`;
+            html += `</div>`;
+        }
+    });
+    return html;
+}
+
+// ========== چاپ رسمی ==========
+function printOfficial() {
+    const filtered = currentBranch ? allData.filter(d => d.branch === currentBranch) : allData;
+    const aggregate = currentBranch === null;
+    const allItems = [];
+    filtered.forEach(d => allItems.push(...d.items));
+    const tree = buildTree(allItems, aggregate);
+    const assetTree = tree['دارایی'] || { _children: {} };
+    const bsTree = tree['بدهی ها و سرمایه'] || { _children: {} };
+    
+    const months = [...new Set(filtered.map(d => d.month))].filter(m => m);
+    const rate = filtered.length > 0 ? filtered[0].rate : 0;
+    const totalAsset = assetTree._value || sumLeaves(assetTree);
+    const totalBS = bsTree._value || sumLeaves(bsTree);
+    
+    const printArea = document.getElementById('printArea');
+    let html = `
+        <div class="print-header">
+            <h1>ترازنامه</h1>
+            <p>ماه: ${months.join('، ') || '—'} | نرخ طلا: ${fmtNum(rate)} ریال</p>
+            <p>شعبه: ${currentBranch || 'همه شعب'}</p>
+        </div>
+        <table class="balance-table">
+            <thead><tr><th width="50%">دارایی‌ها</th><th width="50%">بدهی‌ها و سرمایه</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td style="vertical-align: top;">${buildPrintTree(assetTree._children)}</td>
+                    <td style="vertical-align: top;">${buildPrintTree(bsTree._children)}</td>
+                </tr>
+                <tr class="main-total">
+                    <td>جمع دارایی‌ها: <span style="float: left;">${fmt(totalAsset)}</span></td>
+                    <td>جمع بدهی و سرمایه: <span style="float: left;">${fmt(totalBS)}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="print-footer">این ترازنامه توسط سامانه ترازنامه طلایی تولید شده است.</div>
+    `;
+    printArea.innerHTML = html;
+    window.print();
+}
+
+function buildPrintTree(children, level = 0) {
+    let html = '';
+    const indent = level * 12;
+    Object.entries(children).forEach(([name, node]) => {
+        const hasChildren = Object.keys(node._children).length > 0;
+        const isLeaf = node._value !== null && node._value !== undefined;
+        if (hasChildren) {
+            html += `<div style="margin-right: ${indent}px; font-weight: bold; margin-top: 6px;">${name}</div>`;
+            if (node._value) html += `<div style="margin-right: ${indent}px; color: #333;">${fmt(node._value)}</div>`;
+            html += buildPrintTree(node._children, level + 1);
+        } else if (isLeaf) {
+            html += `<div style="margin-right: ${indent}px; display: flex; justify-content: space-between; border-bottom: 1px dotted #ccc;">`;
+            html += `<span>${name}</span><span>${fmt(node._value)}</span>`;
+            html += `</div>`;
+        }
+    });
+    return html;
+}
+
+function sumLeaves(node) {
+    let sum = 0;
+    if (node._value) sum += node._value;
+    if (node._children) Object.values(node._children).forEach(c => sum += sumLeaves(c));
+    return sum;
+}
+
+function toggleTree(id, parent) {
+    const el = document.getElementById(id), ar = document.getElementById('ar_' + id);
+    if (el) { el.classList.toggle('open'); if (ar) ar.classList.toggle('open'); parent.classList.toggle('open'); }
+}
+
+function fmt(n) { return Number(n || 0).toLocaleString('fa-IR', { maximumFractionDigits: 4 }); }
+function fmtNum(n) { return Number(n || 0).toLocaleString('fa-IR'); }
+
+function updateChart(asset, liability) {
+    const ctx = document.getElementById('mainChart').getContext('2d');
+    if (mainChart) mainChart.destroy();
+    mainChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['دارایی‌ها', 'بدهی‌ها و سرمایه'],
+            datasets: [{
+                data: [asset, liability],
+                backgroundColor: ['rgba(212,175,55,0.7)', 'rgba(248,113,113,0.7)'],
+                borderColor: ['#d4af37', '#f87171'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom', labels: { color: '#a09070', font: { family: 'Vazirmatn', size: 12 }, padding: 16 } } }
+        }
+    });
+}
+</script>
+</body>
+</html>

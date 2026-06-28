@@ -1,0 +1,64 @@
+# Apache Rewrite Rules برای Routing مدرن
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # هدایت تمام درخواست‌ها به public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+    
+    # محافظت از فایل‌های حساس
+    <FilesMatch "^\.">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+    
+    # غیرفعال کردن Directory Listing
+    Options -Indexes
+    
+    # فعال‌سازی فشرده‌سازی
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    </IfModule>
+    
+    # کش مرورگر برای فایل‌های استاتیک
+    <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresByType text/css "access plus 1 month"
+        ExpiresByType text/javascript "access plus 1 month"
+        ExpiresByType application/javascript "access plus 1 month"
+        ExpiresByType image/png "access plus 1 month"
+        ExpiresByType image/jpeg "access plus 1 month"
+        ExpiresByType image/svg+xml "access plus 1 month"
+        ExpiresByType font/woff2 "access plus 1 year"
+        ExpiresByType font/ttf "access plus 1 year"
+    </IfModule>
+    
+    # صفحه 404 سفارشی
+    ErrorDocument 404 /index.php
+</IfModule>
+
+# تنظیمات PHP
+<IfModule php7_module>
+   php_flag display_errors Off
+   php_value max_execution_time 120
+   php_value max_input_time 120
+   php_value max_input_vars 5000
+   php_value memory_limit 512M
+   php_value post_max_size 64M
+   php_value session.gc_maxlifetime 1440
+   php_value upload_max_filesize 64M
+   php_flag zlib.output_compression On
+</IfModule>
+
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 120
+   php_value max_input_time 120
+   php_value max_input_vars 5000
+   php_value memory_limit 512M
+   php_value post_max_size 64M
+   php_value session.gc_maxlifetime 1440
+   php_value upload_max_filesize 64M
+   php_flag zlib.output_compression On
+</IfModule>

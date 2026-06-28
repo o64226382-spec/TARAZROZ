@@ -1,0 +1,85 @@
+[21-Jun-2026 13:17:04 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'overtime_hours' in 'INSERT INTO' in /home/tarazroz/public_html/salary/slip.php:158
+Stack trace:
+#0 /home/tarazroz/public_html/salary/slip.php(158): mysqli_query(Object(mysqli), 'INSERT INTO sal...')
+#1 {main}
+  thrown in /home/tarazroz/public_html/salary/slip.php on line 158
+[21-Jun-2026 13:19:15 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:19:30 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:19:36 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:22:14 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:22:20 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:22:24 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:532
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 532
+[21-Jun-2026 13:31:16 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:31:27 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:31:29 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:31:29 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:31:29 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:31:30 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:496
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 496
+[21-Jun-2026 13:34:20 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:21 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:24 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:31 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:32 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:33 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:56 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494
+[21-Jun-2026 13:34:58 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/salary/archive.php:494
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/salary/archive.php on line 494

@@ -1,0 +1,31 @@
+```
+# Compressed files
+*.rar
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# PHP specific
+*.php~
+php_errors.log
+
+# Backup files
+*.bak
+*.backup
+```

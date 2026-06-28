@@ -1,0 +1,8 @@
+[06-Jun-2026 11:27:14 Asia/Tehran] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - int in /home/tarazroz/public_html/admin/goals_manage.php:104
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/admin/goals_manage.php on line 104
+[09-Jun-2026 11:41:39 Asia/Tehran] PHP Fatal error:  Uncaught Error: mysqli_stmt_bind_param(): Argument #6 cannot be passed by reference in /home/tarazroz/public_html/admin/goal_items.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/admin/goal_items.php on line 38

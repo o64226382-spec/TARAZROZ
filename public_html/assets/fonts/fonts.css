@@ -1,0 +1,10 @@
+@import url('../css/dynamic-theme.php');
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('Modam-Medium.woff2') format('woff2'),
+         url('Modam-Medium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
