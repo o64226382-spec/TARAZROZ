@@ -1,0 +1,41 @@
+[31-May-2026 20:56:21 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'amount_miz' in 'SELECT' in /home/tarazroz/public_html/user/index.php:400
+Stack trace:
+#0 /home/tarazroz/public_html/user/index.php(400): mysqli_prepare(Object(mysqli), 'SELECT item_id,...')
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/index.php on line 400
+[31-May-2026 20:56:26 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'amount_miz' in 'SELECT' in /home/tarazroz/public_html/user/index.php:400
+Stack trace:
+#0 /home/tarazroz/public_html/user/index.php(400): mysqli_prepare(Object(mysqli), 'SELECT item_id,...')
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/index.php on line 400
+[06-Jun-2026 14:36:37 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function clearReminderAfterSubmit() in /home/tarazroz/public_html/user/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/tarazroz/public_html/user/index.php on line 21
+[06-Jun-2026 14:41:23 Asia/Tehran] PHP Warning:  Undefined variable $report_date in /home/tarazroz/public_html/user/index.php on line 22
+[06-Jun-2026 14:41:23 Asia/Tehran] PHP Warning:  Undefined variable $report_date in /home/tarazroz/public_html/user/index.php on line 23
+[09-Jun-2026 20:27:26 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'report_date' at row 1 in /home/tarazroz/public_html/user/save_report.php:35
+Stack trace:
+#0 /home/tarazroz/public_html/user/save_report.php(35): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/save_report.php on line 35
+[09-Jun-2026 20:27:35 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'report_date' at row 1 in /home/tarazroz/public_html/user/save_report.php:35
+Stack trace:
+#0 /home/tarazroz/public_html/user/save_report.php(35): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/save_report.php on line 35
+[11-Jun-2026 19:49:51 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'report_date' at row 1 in /home/tarazroz/public_html/user/save_report.php:35
+Stack trace:
+#0 /home/tarazroz/public_html/user/save_report.php(35): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/save_report.php on line 35
+[13-Jun-2026 20:19:08 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'report_date' at row 1 in /home/tarazroz/public_html/user/save_report.php:35
+Stack trace:
+#0 /home/tarazroz/public_html/user/save_report.php(35): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/save_report.php on line 35
+[14-Jun-2026 20:46:29 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'report_date' at row 1 in /home/tarazroz/public_html/user/save_report.php:35
+Stack trace:
+#0 /home/tarazroz/public_html/user/save_report.php(35): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/user/save_report.php on line 35

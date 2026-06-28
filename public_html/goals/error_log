@@ -1,0 +1,30 @@
+[20-Jun-2026 20:15:31 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
+[20-Jun-2026 20:15:44 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
+[20-Jun-2026 20:15:45 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
+[20-Jun-2026 20:19:17 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
+[20-Jun-2026 20:19:43 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
+[20-Jun-2026 20:19:51 Asia/Tehran] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'progress_date' at row 1 in /home/tarazroz/public_html/goals/daily.php:71
+Stack trace:
+#0 /home/tarazroz/public_html/goals/daily.php(71): mysqli_stmt_execute(Object(mysqli_stmt))
+#1 {main}
+  thrown in /home/tarazroz/public_html/goals/daily.php on line 71
