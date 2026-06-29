@@ -1,31 +1,42 @@
 ```
-# Compressed files
-*.rar
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+dist/
+build/
+target/
 
-# Logs
+# Dependencies
+.venv/
+venv/
+node_modules/
+vendor/
+composer.lock
+
+# Logs and temp files
 *.log
+*.tmp
+*.swp
+*.swo
 
-# Environment files
+# Environment
 .env
 .env.local
 .env.*
 
-# Editor/IDE files
+# Editors
 .vscode/
 .idea/
-*.swp
-*.swo
-*.tmp
+*.sublime-project
+*.sublime-workspace
 
-# System files
+# OS generated files
 .DS_Store
 Thumbs.db
 
 # PHP specific
 *.php~
-php_errors.log
-
-# Backup files
 *.bak
-*.backup
 ```

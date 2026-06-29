@@ -22,10 +22,10 @@ define('SECURE_ACCESS', true);
 $bale_token = '2047185171:48SKKO5dzswnDnBcH-KDpMYs2zWfwNXVinY';
 $chat_id     = '5838291218';
 
-$db_host = 'localhost';
-$db_user = 'tarazroz_tarazuser';
-$db_pass = 'NyLue-hRh2OP9c;8';
-$db_name = 'tarazroz_tarazdb';
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') ?: '123456';
+$db_name = getenv('DB_NAME') ?: 'tarazroz_db';
 
 $site_root = '/home/tarazroz/public_html';
 $tmp_dir   = '/home/tarazroz/tmp_full_backup/';

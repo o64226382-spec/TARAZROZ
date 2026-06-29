@@ -6,7 +6,7 @@ $offset_file = __DIR__ . '/bot_offset.txt';
 $site_url = 'https://ilh10.airodns.com/~tarazroz';
 
 // ⭐ دیتابیس
-$conn = mysqli_connect('localhost', 'tarazroz_tarazuser', 'NyLue-hRh2OP9c;8', 'tarazroz_tarazdb');
+$conn = mysqli_connect(getenv('DB_HOST') ?: 'localhost', getenv('DB_USER') ?: 'root', getenv('DB_PASS') ?: '123456', getenv('DB_NAME') ?: 'tarazroz_db');
 mysqli_set_charset($conn, 'utf8mb4');
 
 // ⭐ دریافت پیام‌ها

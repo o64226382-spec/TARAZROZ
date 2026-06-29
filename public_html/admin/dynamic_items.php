@@ -46,7 +46,7 @@ if (isset($_GET['delete'])) {
 
 // ========== لیست آیتم‌ها ==========
 $items = [];
-$items_result = mysqli_query($conn, "SELECT * FROM dynamic_items ORDER BY sort_order");
+$items_result = mysqli_query($conn, "SELECT * FROM dynamic_items WHERE active=1 ORDER BY sort_order");
 if ($items_result) {
     while ($row = mysqli_fetch_assoc($items_result)) {
         $items[] = $row;

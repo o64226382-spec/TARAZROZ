@@ -49,13 +49,13 @@ if (isset($_GET['delete'])) {
 
 // ========== لیست‌ها ==========
 $daily = [];
-$d_res = mysqli_query($conn, "SELECT * FROM income_daily_items ORDER BY sort_order");
+$d_res = mysqli_query($conn, "SELECT * FROM income_daily_items WHERE active=1 ORDER BY sort_order");
 if ($d_res) {
     while ($r = mysqli_fetch_assoc($d_res)) $daily[] = $r;
 }
 
 $monthly = [];
-$m_res = mysqli_query($conn, "SELECT * FROM income_monthly_items ORDER BY sort_order");
+$m_res = mysqli_query($conn, "SELECT * FROM income_monthly_items WHERE active=1 ORDER BY sort_order");
 if ($m_res) {
     while ($r = mysqli_fetch_assoc($m_res)) $monthly[] = $r;
 }
