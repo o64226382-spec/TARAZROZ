@@ -1,42 +1,38 @@
 ```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-dist/
-build/
-target/
-
-# Dependencies
-.venv/
-venv/
-node_modules/
-vendor/
-composer.lock
-
-# Logs and temp files
+# Logs
 *.log
-*.tmp
-*.swp
-*.swo
 
-# Environment
+# Environment files
 .env
 .env.local
-.env.*
+*.env.*
 
-# Editors
+# Temporary files
+*.tmp
+*.swp
+
+# IDE files
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
 
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# PHP specific
+# PHP related
 *.php~
+*.php.bak
+
+# Web server
+.htaccess
+.php.ini
+
+# Storage and cache
+storage/
+.cache/
+*.cache
+
+# Thumbnails and system files
+Thumbs.db
+.DS_Store
+
+# Backup files
+*~
 *.bak
 ```
