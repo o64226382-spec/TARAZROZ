@@ -36,7 +36,7 @@ if (isset($_GET['delete'])) {
 }
 
 $items = [];
-$res = mysqli_query($conn, "SELECT * FROM asset_items ORDER BY sort_order");
+$res = mysqli_query($conn, "SELECT * FROM asset_items WHERE active=1 ORDER BY sort_order");
 while ($row = mysqli_fetch_assoc($res)) $items[] = $row;
 
 $message = '';

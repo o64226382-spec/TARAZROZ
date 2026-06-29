@@ -18,7 +18,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "✅ جدول goal_types وجود دارد<br>";
     
     // نمایش محتویات جدول
-    $goals = mysqli_query($conn, "SELECT * FROM goal_types");
+    $goals = mysqli_query($conn, "SELECT * FROM goal_types WHERE is_active=1 ORDER BY sort_order");
     echo "<table border='1' cellpadding='8' style='border-collapse:collapse;'>";
     echo "<tr><th>ID</th><th>نام</th><th>واحد</th><th>آیکون</th></tr>";
     while ($row = mysqli_fetch_assoc($goals)) {

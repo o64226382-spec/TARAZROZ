@@ -5,7 +5,7 @@ require_once '../includes/auth.php';
 requireAdmin();
 
 $tools = [];
-$res = mysqli_query($conn, "SELECT * FROM tools ORDER BY name");
+$res = mysqli_query($conn, "SELECT * FROM tools WHERE active=1 ORDER BY sort_order, name");
 while ($row = mysqli_fetch_assoc($res)) $tools[] = $row;
 
 $users = [];
